@@ -1,4 +1,4 @@
-#include <pcl_pipeline.hpp>
+#include <lidar_detect/pcl_pipeline.hpp>
 
 #include <pcl/filters/crop_box.h>
 

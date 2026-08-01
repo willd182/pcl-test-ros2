@@ -12,6 +12,38 @@ find_package(PCL REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(pcl_conversions REQUIRED)
 
+add_library(pcl_pipeline
+  src/pcl_pipeline.cpp
+)
+
+target_include_directories(pcl_pipeline PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+  ${PCL_INCLUDE_DIRS}
+)
+
+target_link_libraries(pcl_pipeline
+  ${PCL_LIBRARIES}
+)
+
+add_executable(lidar_detect_node
+  src/lidar_detect_node.cpp
+)
+
+ament_target_dependencies(lidar_detect_node
+  rclcpp
+  sensor_msgs
+  pcl_conversions
+)
+
+target_link_libraries(lidar_detect_node
+  pcl_pipeline
+)
+
+install(TARGETS
+  lidar_detect_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)

@@ -1,10 +1,10 @@
 #include <memory>
 
-#include <rclcpp/rclcpp.hpp>
-#include <sensor_msgs/msg/point_cloud2.hpp>
+#include "rclcpp/rclcpp.hpp"
+#include "sensor_msgs/msg/point_cloud2.hpp"
 
 #include <pcl_conversions/pcl_conversions.h>
-#include <pcl_pipeline.hpp>
+#include "lidar_detect/pcl_pipeline.hpp"
 
 class PCLNode : public rclcpp::Node
 {
@@ -44,3 +44,17 @@ private:
     subscription_;
 
 };
+
+
+int main(int argc, char * argv[])
+{
+  rclcpp::init(argc, argv);
+
+  auto node = std::make_shared<PCLNode>();
+
+  rclcpp::spin(node);
+
+  rclcpp::shutdown();
+
+  return 0;
+}

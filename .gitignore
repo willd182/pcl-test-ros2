@@ -1,2 +1,6 @@
 bags/
 .vscode/
+
+build/
+install/
+log/
